@@ -8,6 +8,7 @@
     <artifactId>imgur-client</artifactId>
     <version>1.0-SNAPSHOT</version>
     <description>A wrapper for the Imgur API</description>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
