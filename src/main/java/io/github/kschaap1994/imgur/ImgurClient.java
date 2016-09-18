@@ -1,9 +1,9 @@
-package com.kschaap1994.imgur;
+package io.github.kschaap1994.imgur;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kschaap1994.imgur.model.Image;
-import com.kschaap1994.imgur.util.Requests;
+import io.github.kschaap1994.imgur.model.*;
+import io.github.kschaap1994.imgur.util.Requests;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.imaging.ImageFormats;
 import org.apache.commons.imaging.ImageWriteException;
@@ -48,8 +48,8 @@ public final class ImgurClient {
      * @return an Image object
      */
 
-    public Image uploadImage(final byte[] base64) {
-        return postFile("/image", Image.class, base64);
+    public ImgurImage uploadImage(final byte[] base64) {
+        return postFile("/image", ImgurImage.class, base64);
     }
 
     /**
@@ -60,7 +60,7 @@ public final class ImgurClient {
      * @return the result from Imgur
      */
 
-    public Image uploadImage(final BufferedImage image, final ImageFormats format) {
+    public ImgurImage uploadImage(final BufferedImage image, final ImageFormats format) {
         final Map<String, Object> params = new HashMap<>();
         try {
             return uploadImage(Base64.encodeBase64(Imaging.writeImageToBytes(image, format, params)));
@@ -68,6 +68,26 @@ public final class ImgurClient {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ImgurImage getImage(final String id) {
+        return get("/image/" + id, ImgurImage.class);
+    }
+
+    public ImgurAccount getAccount(final String username) {
+        return get("/account/" + username, ImgurAccount.class);
+    }
+
+    public ImgurAlbum getAlbum(final String id) {
+        return get("/album/" + id, ImgurAlbum.class);
+    }
+
+    public ImgurGalleryAlbum getGalleryAlbum(final String id) {
+        return get("/gallery/album/" + id, ImgurGalleryAlbum.class);
+    }
+
+    public ImgurComment getComment(final int id) {
+        return get("/comment/" + id, ImgurComment.class);
     }
 
     /**
@@ -122,9 +142,15 @@ public final class ImgurClient {
      */
 
     private <T> T get(final String path, final Class<T> clazz, final BasicNameValuePair... params) {
-        final HttpEntity entity = EntityBuilder.create().setParameters(params).build();
+        final String response = requests.GET.makeRequest(BASE + path,
+                new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
-        final String response = requests.GET.makeRequest(BASE + path, entity,
+        final Gson gson = new Gson();
+        return gson.fromJson(response, clazz);
+    }
+
+    private <T> T get(final String path, final Class<T> clazz) {
+        final String response = requests.GET.makeRequest(BASE + path,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
         final Gson gson = new Gson();

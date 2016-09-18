@@ -1,7 +1,7 @@
-package com.kschaap1994.imgur.examples;
+package io.github.kschaap1994.imgur.examples;
 
-import com.kschaap1994.imgur.ImgurClient;
-import com.kschaap1994.imgur.model.Image;
+import io.github.kschaap1994.imgur.ImgurClient;
+import io.github.kschaap1994.imgur.model.ImgurImage;
 import org.apache.commons.imaging.ImageFormats;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class Example {
 
-    private static final String CLIENT_ID = "fdaa08c932d9a7e";
+    private static final String CLIENT_ID = "YOUR_API_KEY";
 
     public static void main(final String... args) {
         final ImgurClient client = new ImgurClient(CLIENT_ID);
@@ -29,7 +29,7 @@ public class Example {
             e.printStackTrace();
         }
 
-        final Image image = client.uploadImage(bufferedImage, ImageFormats.PNG); //get any data from the image
+        final ImgurImage image = client.uploadImage(bufferedImage, ImageFormats.PNG); //get any data from the image
         assert image != null;
         System.out.println(image.link);
     }

@@ -1,4 +1,4 @@
-package com.kschaap1994.imgur.util;
+package io.github.kschaap1994.imgur.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

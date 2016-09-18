@@ -1,4 +1,4 @@
-package com.kschaap1994.imgur.model;
+package io.github.kschaap1994.imgur.model;
 
 /**
  * Created by IntelliJ IDEA
@@ -7,7 +7,7 @@ package com.kschaap1994.imgur.model;
  * Time: 22:15
  * To change this template use File | Settings | File Templates.
  */
-public final class Image {
+public final class ImgurImage {
 
     public String id;
     public String title;
