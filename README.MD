@@ -1,0 +1,1 @@
+#imgur-client [![CircleCI](https://circleci.com/gh/KSchaap1994/imgur-client.svg?style=svg)](https://circleci.com/gh/KSchaap1994/imgur-client) [![Dependency Status](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4)
