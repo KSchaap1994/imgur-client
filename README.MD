@@ -18,7 +18,7 @@ If you are using Maven, add the following in `pom.xml`:
 <dependency>
     <groupId>com.github.KSchaap1994</groupId>
     <artifactId>imgur-client</artifactId>
-    <version>v0.01-alpha</version>
+    <version>v0.02-alpha</version>
 </dependency>
 ...
 ```
