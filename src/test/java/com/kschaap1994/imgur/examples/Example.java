@@ -18,9 +18,9 @@ import java.io.IOException;
  */
 public class Example {
 
-    private final String CLIENT_ID = "API_KEY_HERE";
+    private static final String CLIENT_ID = "fdaa08c932d9a7e";
 
-    private void getImage() {
+    public static void main(final String... args) {
         final ImgurClient client = new ImgurClient(CLIENT_ID);
         BufferedImage bufferedImage = null;
         try {
@@ -30,5 +30,7 @@ public class Example {
         }
 
         final Image image = client.uploadImage(bufferedImage, ImageFormats.PNG); //get any data from the image
+        assert image != null;
+        System.out.println(image.link);
     }
 }

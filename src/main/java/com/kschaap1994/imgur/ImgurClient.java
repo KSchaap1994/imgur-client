@@ -1,6 +1,7 @@
 package com.kschaap1994.imgur;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kschaap1994.imgur.model.Image;
 import com.kschaap1994.imgur.util.Requests;
 import org.apache.commons.codec.binary.Base64;
@@ -105,7 +106,8 @@ public final class ImgurClient {
         final String response = requests.POST.makeRequest(BASE + path, entity,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
-        final Gson gson = new Gson();
+        final Gson gson = new GsonBuilder().create();
+
         return gson.fromJson(response, clazz);
     }
 

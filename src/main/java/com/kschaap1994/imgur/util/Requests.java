@@ -1,5 +1,9 @@
 package com.kschaap1994.imgur.util;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.*;
@@ -112,8 +116,13 @@ public final class Requests {
             try {
                 final CloseableHttpResponse response = CLIENT.execute(request);
                 final HttpEntity entity = response.getEntity();
+                final String content = EntityUtils.toString(entity);
 
-                return EntityUtils.toString(entity);
+                final JsonParser parser = new JsonParser();
+                final JsonElement element = parser.parse(content);
+
+                return element.getAsJsonObject().getAsJsonObject("data").toString();
+
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
