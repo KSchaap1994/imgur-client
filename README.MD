@@ -16,9 +16,9 @@ If you are using Maven, add the following in `pom.xml`:
 </repositories>
 ...
 <dependency>
-	    <groupId>com.github.KSchaap1994</groupId>
-	    <artifactId>imgur-client</artifactId>
-	    <version>v0.01-alpha</version>
+    <groupId>com.github.KSchaap1994</groupId>
+    <artifactId>imgur-client</artifactId>
+    <version>v0.01-alpha</version>
 </dependency>
 ...
 ```
@@ -48,17 +48,15 @@ public class Example {
 
     private void getImage() {
         final ImgurClient client = new ImgurClient(CLIENT_ID);
-        byte[] base64 = null;
+        BufferedImage bufferedImage = null;
         try {
-            final BufferedImage bufferedImage = ImageIO.read(new File("image.png"));
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage, "png", stream);
-            base64 = Base64.encodeBase64(stream.toByteArray());
+            bufferedImage = ImageIO.read(new File("image.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         }
 
-        final Image image = client.uploadImage(base64); //get any data from the image
+        final Image image = client.uploadImage(bufferedImage, ImageFormats.PNG); //get any data from the image
     }
 }
 ```

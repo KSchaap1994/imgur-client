@@ -3,9 +3,18 @@ package com.kschaap1994.imgur;
 import com.google.gson.Gson;
 import com.kschaap1994.imgur.model.Image;
 import com.kschaap1994.imgur.util.Requests;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.imaging.ImageFormats;
+import org.apache.commons.imaging.ImageWriteException;
+import org.apache.commons.imaging.Imaging;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.EntityBuilder;
 import org.apache.http.message.BasicNameValuePair;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA
@@ -20,13 +29,54 @@ public final class ImgurClient {
     private final String clientId;
     private final Requests requests = new Requests();
 
+    /**
+     * Constructs a new ImgurClient
+     *
+     * @param clientId the API key
+     */
+
     public ImgurClient(final String clientId) {
         this.clientId = clientId;
     }
 
+    /**
+     * Uploads an image to Imgur
+     *
+     * @param base64 the base64
+     * @return an Image object
+     */
+
     public Image uploadImage(final byte[] base64) {
         return postFile("/image", Image.class, base64);
     }
+
+    /**
+     * Uploads an image to Imgur
+     * @param image the image to upload
+     * @param format the format of the image
+     * @return the result from Imgur
+     */
+
+    public Image uploadImage(final BufferedImage image, final ImageFormats format) {
+        final Map<String, Object> params = new HashMap<>();
+        try {
+            return postFile("/image", Image.class,
+                    Base64.encodeBase64(Imaging.writeImageToBytes(image, format, params)));
+        } catch (ImageWriteException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Makes a POST request
+     *
+     * @param path the path to make the request to
+     * @param clazz the model class
+     * @param params if the request has any parameters to send
+     * @param <T> the model class
+     * @return the response from Imgur
+     */
 
     private <T> T post(final String path, final Class<T> clazz, final BasicNameValuePair... params) {
         final HttpEntity entity = EntityBuilder.create().setParameters(params).build();
@@ -38,10 +88,40 @@ public final class ImgurClient {
         return gson.fromJson(response, clazz);
     }
 
+    /**
+     * Uploads an image using a POST request
+     *
+     * @param path the path to make the request to
+     * @param clazz the model class
+     * @param base64 the base64 of the image
+     * @param <T> the model class
+     * @return the response from Imgur
+     */
+
     private <T> T postFile(final String path, final Class<T> clazz, final byte[] base64) {
         final HttpEntity entity = EntityBuilder.create().setBinary(base64).build();
 
         final String response = requests.POST.makeRequest(BASE + path, entity,
+                new BasicNameValuePair("Authorization", "Client-ID " + clientId));
+
+        final Gson gson = new Gson();
+        return gson.fromJson(response, clazz);
+    }
+
+    /**
+     * Makes a GET request
+     *
+     * @param path the path to make the request to
+     * @param clazz the model class
+     * @param params if the request has any parameters to send
+     * @param <T> the model class
+     * @return the response from Imgur
+     */
+
+    private <T> T get(final String path, final Class<T> clazz, final BasicNameValuePair... params) {
+        final HttpEntity entity = EntityBuilder.create().setParameters(params).build();
+
+        final String response = requests.GET.makeRequest(BASE + path, entity,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
         final Gson gson = new Gson();
