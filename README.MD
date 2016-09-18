@@ -33,7 +33,7 @@ allprojects {
 	...
 	dependencies {
 	    ...
-	    compile 'com.github.KSchaap1994:imgur-client:v0.01-alpha'
+	    compile 'com.github.KSchaap1994:imgur-client:v0.02-alpha'
     }
 }
 ```
