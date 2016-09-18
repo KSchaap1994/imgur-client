@@ -113,8 +113,6 @@ public final class Requests {
                 final CloseableHttpResponse response = CLIENT.execute(request);
                 final HttpEntity entity = response.getEntity();
 
-                CLIENT.close();
-
                 return EntityUtils.toString(entity);
             } catch (IOException e) {
                 e.printStackTrace();
