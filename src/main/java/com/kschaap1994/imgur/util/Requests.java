@@ -39,9 +39,23 @@ public final class Requests {
         private final CloseableHttpClient CLIENT = HttpClients.createDefault();
         private final Class<? extends HttpUriRequest> method; //request class
 
+        /**
+         * Constructs a Request
+         *
+         * @param method the method class
+         */
+
         private Request(Class<? extends HttpUriRequest> method) {
             this.method = method;
         }
+
+        /**
+         * Makes a request to the URL with the specified headers
+         *
+         * @param url the url to make the request to
+         * @param headers the headers, if any
+         * @return Request#request
+         */
 
         public String makeRequest(final String url, final BasicNameValuePair... headers) {
             try {
@@ -58,6 +72,15 @@ public final class Requests {
                 return null;
             }
         }
+
+        /**
+         * Makes a request to the URL with parameters and the specified headers
+         *
+         * @param url the url to make the request to
+         * @param entity the parameters, if any
+         * @param headers the headers, if any
+         * @return Request#request
+         */
 
         public String makeRequest(final String url, final HttpEntity entity, final NameValuePair... headers) {
             try {
@@ -78,10 +101,19 @@ public final class Requests {
             }
         }
 
+        /**
+         * Makes the actual request
+         *
+         * @param request the request to do
+         * @return the response
+         */
+
         private String request(final HttpUriRequest request) {
             try {
                 final CloseableHttpResponse response = CLIENT.execute(request);
                 final HttpEntity entity = response.getEntity();
+
+                CLIENT.close();
 
                 return EntityUtils.toString(entity);
             } catch (IOException e) {

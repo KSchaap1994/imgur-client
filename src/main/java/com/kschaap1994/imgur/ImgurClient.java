@@ -27,7 +27,7 @@ public final class ImgurClient {
 
     private final String BASE = "https://api.imgur.com/3/";
     private final String clientId;
-    private final Requests requests = new Requests();
+    private final Requests requests;
 
     /**
      * Constructs a new ImgurClient
@@ -37,6 +37,7 @@ public final class ImgurClient {
 
     public ImgurClient(final String clientId) {
         this.clientId = clientId;
+        requests = new Requests();
     }
 
     /**
@@ -52,7 +53,8 @@ public final class ImgurClient {
 
     /**
      * Uploads an image to Imgur
-     * @param image the image to upload
+     *
+     * @param image  the image to upload
      * @param format the format of the image
      * @return the result from Imgur
      */
@@ -60,8 +62,7 @@ public final class ImgurClient {
     public Image uploadImage(final BufferedImage image, final ImageFormats format) {
         final Map<String, Object> params = new HashMap<>();
         try {
-            return postFile("/image", Image.class,
-                    Base64.encodeBase64(Imaging.writeImageToBytes(image, format, params)));
+            return uploadImage(Base64.encodeBase64(Imaging.writeImageToBytes(image, format, params)));
         } catch (ImageWriteException | IOException e) {
             e.printStackTrace();
             return null;
@@ -71,10 +72,10 @@ public final class ImgurClient {
     /**
      * Makes a POST request
      *
-     * @param path the path to make the request to
-     * @param clazz the model class
+     * @param path   the path to make the request to
+     * @param clazz  the model class
      * @param params if the request has any parameters to send
-     * @param <T> the model class
+     * @param <T>    the model class
      * @return the response from Imgur
      */
 
@@ -91,10 +92,10 @@ public final class ImgurClient {
     /**
      * Uploads an image using a POST request
      *
-     * @param path the path to make the request to
-     * @param clazz the model class
+     * @param path   the path to make the request to
+     * @param clazz  the model class
      * @param base64 the base64 of the image
-     * @param <T> the model class
+     * @param <T>    the model class
      * @return the response from Imgur
      */
 
@@ -111,10 +112,10 @@ public final class ImgurClient {
     /**
      * Makes a GET request
      *
-     * @param path the path to make the request to
-     * @param clazz the model class
+     * @param path   the path to make the request to
+     * @param clazz  the model class
      * @param params if the request has any parameters to send
-     * @param <T> the model class
+     * @param <T>    the model class
      * @return the response from Imgur
      */
 
