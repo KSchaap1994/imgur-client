@@ -15,4 +15,16 @@ public final class ImgurAccount {
     public float reputation;
     public int created;
     public boolean pro_expiration;
+
+    @Override
+    public String toString() {
+        return "ImgurAccount{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", bio='" + bio + '\'' +
+                ", reputation=" + reputation +
+                ", created=" + created +
+                ", pro_expiration=" + pro_expiration +
+                '}';
+    }
 }

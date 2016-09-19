@@ -1,5 +1,7 @@
 package io.github.kschaap1994.imgur.model;
 
+import java.util.Arrays;
+
 /**
  * Created by IntelliJ IDEA
  * User: Kevin
@@ -31,4 +33,30 @@ public final class ImgurAlbum {
     public ImgurImage[] images;
     public boolean in_gallery;
 
+    @Override
+    public String toString() {
+        return "ImgurAlbum{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", datetime=" + datetime +
+                ", cover='" + cover + '\'' +
+                ", cover_width=" + cover_width +
+                ", cover_height=" + cover_height +
+                ", account_url='" + account_url + '\'' +
+                ", account_id=" + account_id +
+                ", privacy='" + privacy + '\'' +
+                ", layout='" + layout + '\'' +
+                ", views=" + views +
+                ", link='" + link + '\'' +
+                ", favorite=" + favorite +
+                ", nsfw=" + nsfw +
+                ", section='" + section + '\'' +
+                ", order=" + order +
+                ", deletehash='" + deletehash + '\'' +
+                ", images_count=" + images_count +
+                ", images=" + Arrays.toString(images) +
+                ", in_gallery=" + in_gallery +
+                '}';
+    }
 }

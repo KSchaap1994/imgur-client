@@ -1,5 +1,7 @@
 package io.github.kschaap1994.imgur.model;
 
+import java.util.Arrays;
+
 /**
  * Created by IntelliJ IDEA
  * User: Kevin
@@ -25,4 +27,24 @@ public final class ImgurComment {
     public String vote;
     public ImgurComment[] children;
 
+    @Override
+    public String toString() {
+        return "ImgurComment{" +
+                "id=" + id +
+                ", image_id='" + image_id + '\'' +
+                ", comment='" + comment + '\'' +
+                ", author='" + author + '\'' +
+                ", author_id=" + author_id +
+                ", on_album=" + on_album +
+                ", album_cover='" + album_cover + '\'' +
+                ", ups=" + ups +
+                ", downs=" + downs +
+                ", points=" + points +
+                ", datetime=" + datetime +
+                ", parent_id=" + parent_id +
+                ", deleted=" + deleted +
+                ", vote='" + vote + '\'' +
+                ", children=" + Arrays.toString(children) +
+                '}';
+    }
 }

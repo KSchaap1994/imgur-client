@@ -32,4 +32,33 @@ public final class ImgurImage {
     public String link;
     public boolean success;
     public int status;
+
+    @Override
+    public String toString() {
+        return "ImgurImage{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", datetime=" + datetime +
+                ", type='" + type + '\'' +
+                ", animated=" + animated +
+                ", width=" + width +
+                ", height=" + height +
+                ", size=" + size +
+                ", views=" + views +
+                ", bandwith=" + bandwith +
+                ", vote='" + vote + '\'' +
+                ", favorite=" + favorite +
+                ", nsfw=" + nsfw +
+                ", section='" + section + '\'' +
+                ", account_url='" + account_url + '\'' +
+                ", account_id=" + account_id +
+                ", comment_preview='" + comment_preview + '\'' +
+                ", deletehash='" + deletehash + '\'' +
+                ", name='" + name + '\'' +
+                ", link='" + link + '\'' +
+                ", success=" + success +
+                ", status=" + status +
+                '}';
+    }
 }

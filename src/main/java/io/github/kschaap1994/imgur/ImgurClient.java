@@ -106,7 +106,8 @@ public final class ImgurClient {
         final String response = requests.POST.makeRequest(BASE + path, entity,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
-        final Gson gson = new Gson();
+        final Gson gson = new GsonBuilder().create();
+
         return gson.fromJson(response, clazz);
     }
 
@@ -145,7 +146,8 @@ public final class ImgurClient {
         final String response = requests.GET.makeRequest(BASE + path,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
-        final Gson gson = new Gson();
+        final Gson gson = new GsonBuilder().create();
+
         return gson.fromJson(response, clazz);
     }
 
@@ -153,7 +155,8 @@ public final class ImgurClient {
         final String response = requests.GET.makeRequest(BASE + path,
                 new BasicNameValuePair("Authorization", "Client-ID " + clientId));
 
-        final Gson gson = new Gson();
+        final Gson gson = new GsonBuilder().create();
+
         return gson.fromJson(response, clazz);
     }
 }
