@@ -1,4 +1,4 @@
-#imgur-client [![CircleCI](https://circleci.com/gh/KSchaap1994/imgur-client.svg?style=svg)](https://circleci.com/gh/KSchaap1994/imgur-client) [![Jitpack](https://jitpack.io/v/KSchaap1994/imgur-client.svg)](https://jitpack.io/#KSchaap1994/imgur-client) [![Dependency Status](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4)
+#imgur-client [![CircleCI](https://circleci.com/gh/KSchaap1994/imgur-client.svg?style=svg)](https://circleci.com/gh/KSchaap1994/imgur-client) [![codecov](https://codecov.io/gh/KSchaap1994/imgur-client/branch/master/graph/badge.svg)](https://codecov.io/gh/KSchaap1994/imgur-client) [![Jitpack](https://jitpack.io/v/KSchaap1994/imgur-client.svg)](https://jitpack.io/#KSchaap1994/imgur-client) [![Dependency Status](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57de6bccbf3e4c0034e229f4)
 
 Java wrapper for the Imgur API, written in Java 8. 
 
