@@ -63,4 +63,5 @@ public class Example {
 
 #Development
 
-This Java wrapper is still in development. Any function can break at any time. If this happens please contact me or request a PR.
+This Java wrapper is still in development. Any function can break at any time. 
+If this happens please contact me or simply submit a PR.

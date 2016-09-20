@@ -14,7 +14,7 @@ public final class ImgurAccount {
     public String bio;
     public float reputation;
     public int created;
-    public boolean pro_expiration;
+    public Object pro_expiration; //returns a boolean or int
 
     @Override
     public String toString() {

@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class ExampleTest {
 
-    private static final String CLIENT_ID = "fdaa08c932d9a7e";
+    private static final String CLIENT_ID = "YOUR_API_KEY";
     private static final ImgurClient CLIENT;
 
     static {
