@@ -1,7 +1,5 @@
 package io.github.kschaap1994.imgur.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.apache.http.HttpEntity;
@@ -44,7 +42,7 @@ public final class Requests {
         private final Class<? extends HttpUriRequest> method; //request class
 
         /**
-         * Constructs a Request
+         * Constructs a {@link Request}
          *
          * @param method the method class
          */
@@ -58,7 +56,7 @@ public final class Requests {
          *
          * @param url the url to make the request to
          * @param headers the headers, if any
-         * @return Request#request
+         * @return {@linkplain Request#request(HttpUriRequest)}
          */
 
         public String makeRequest(final String url, final BasicNameValuePair... headers) {
@@ -83,7 +81,7 @@ public final class Requests {
          * @param url the url to make the request to
          * @param entity the parameters, if any
          * @param headers the headers, if any
-         * @return Request#request
+         * @return {@linkplain Request#request(HttpUriRequest)}
          */
 
         public String makeRequest(final String url, final HttpEntity entity, final NameValuePair... headers) {

@@ -14,8 +14,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA
@@ -31,7 +29,7 @@ public final class ImgurClient {
     private final Requests requests;
 
     /**
-     * Constructs a new ImgurClient
+     * Constructs a new {@link ImgurClient}
      *
      * @param clientId the API key
      */
@@ -61,9 +59,8 @@ public final class ImgurClient {
      */
 
     public ImgurImage uploadImage(final BufferedImage image, final ImageFormats format) {
-        final Map<String, Object> params = new HashMap<>();
         try {
-            return uploadImage(Base64.encodeBase64(Imaging.writeImageToBytes(image, format, params)));
+            return uploadImage(Base64.encodeBase64(Imaging.writeImageToBytes(image, format, null)));
         } catch (ImageWriteException | IOException e) {
             e.printStackTrace();
             return null;
